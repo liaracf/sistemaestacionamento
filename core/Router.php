@@ -13,14 +13,19 @@ class Router
                 $controllerName = 'App\controllers\HomeController';
                 $actionName = 'index';
                 break;
-            case '/register':
+            case '/entrada':
                 $controllerName = 'App\controllers\AuthController';
-                $actionName = 'register';
+                $actionName = 'entrada';
                 break;
-            case '/login':
+            case '/sair':
                 $controllerName = 'App\controllers\AuthController';
-                $actionName = 'login';
+                $actionName = 'sair';
                 break;
+             case '/pagamento':
+                    $controllerName = 'App\controllers\AuthController';
+                    $actionName = 'pagamento';
+                break;
+
              //Adicionar novas rotas aqui....
             default:
                 http_response_code(404);

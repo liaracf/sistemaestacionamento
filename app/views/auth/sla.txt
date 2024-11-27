@@ -1,0 +1,261 @@
+/* <div class="mb-4">
+        //<label for="Username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input type="text" id="username" name="username" required
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+      <div class="mb-6">
+        <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
+        <input type="password" id="password" name="password" required
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div> */
+
+
+
+
+      <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>SAÍDA</title>
+</head>
+
+<body class="bg-white-900 text-black flex items-center justify-center min-h-screen">
+  <div class="bg-gray-200 p-8 rounded-lg shadow-md w-full max-w-sm">
+    <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">SAIR</h2>
+    <form action="/sair" method="POST">
+      <div class="mb-4">
+        <label for="placa" class="block text-sm font-medium text-gray-700">Placa</label>
+        <input type="text" id="placa" name="placa" required
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+     
+
+
+     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $placa = $_POST['placa'];
+      
+
+      $db = Database::connect();
+      $stm = $db->prepare("SELECT * FROM registro WHERE placa = :placa");
+
+      $stm->bindParam(":placa", $placa);
+      $stm->execute();
+
+      $placa = $stm->fetch();
+      session_start();
+
+      if($placa ($placa)){
+
+        $_SESSION['id'] = $registro['id'];
+        
+
+        $this->redirect('/pagamento');
+      }}
+
+
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $placa = $_POST['placa'];
+      
+
+      $db = Database::connect();
+      $stm = $db->prepare("SELECT * FROM registro WHERE placa = :placa");
+
+      $stm->bindParam(":placa", $placa);
+      $stm->execute();
+
+      $placa = $stm->fetch();
+      session_start();
+
+      if($placa ($placa)){
+
+        $_SESSION['id'] = $registro['id'];
+        
+
+        $this->redirect('/pagamento');
+
+      }
+    }
+    $this->view('auth/sair');
+
+
+
+
+
+
+
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $placa = $_POST['placa'];
+      $sair = date('Y-m-d H:i:s');
+    
+      // Buscar o registro de entrada
+      $sql = "SELECT * FROM estacionamento WHERE placa = :placa AND saida IS NULL";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute(['placa' => $placa]);
+      $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+      if ($registro) {
+          $entrada = new DateTime($registro['entrada']);
+          $sair DateTime = new DateTime($sair);
+          $intervalo = $entrada->diff($sairDateTime);
+    
+          // Calcular o valor a ser pago
+          $horas = ceil($intervalo->h + ($intervalo->i / 60)); // Arredondar horas
+          $valor_pago = $horas * 5.00; // Exemplo: R$5 por hora
+    
+          // Atualizar registro
+          $sql = "UPDATE estacionamento SET saida = :sair, valor_pago = :valor_pago WHERE id = :id";
+          $stmt = $pdo->prepare($sql);
+          $stmt->execute([
+              'saida' => $saida,
+              'valor_pago' => $valor_pago,
+              'id' => $registro['id']
+          ]);
+    
+          echo "Valor a pagar: R$ " . number_format($valor_pago, 2, ',', '.');
+      } else {
+          echo "Nenhum registro de entrada encontrado para a placa informada.";
+      }
+    }
+
+
+    $stm->bindParam(":placa", $placa);
+      $stm->execute();
+
+      $placa = $stm->fetch();
+      session_start();
+
+      if($placa ($placa)){
+
+        $_SESSION['id'] = $registro['id'];
+        
+
+        $this->redirect('/pagamento');
+
+      }
+    }
+    $this->view('auth/sair');
+
+
+    $stm->bindParam(":placa", $placa);
+      $stm->execute();
+
+      $placa = $stm->fetch();
+      session_start();
+
+      if($placa ($placa)){
+
+        $_SESSION['id'] = $registro['id'];
+        
+
+        $this->redirect('/pagamento');
+
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $placa = $_POST['placa'];
+      $sair = date('Y-m-d H:i:s');
+
+      $db = Database::connect();
+      $sql = "SELECT * FROM registro WHERE placa = :placa AND sair IS NULL";
+      $stm = $pdo->prepare($sql);
+      $stm->execute(['placa' => $placa]);
+      $registro = $stm->fetch(PDO::FETCH_ASSOC);
+         if ($registro) {
+              
+            $sairDateTime = new DateTime($sair);
+                  
+      $sql = "UPDATE registro SET sair = :sair, WHERE id = :id";
+      $stmsudo ->execute([
+        'sair' => $sair,
+        'id' => $registro['id']
+    ]);
+     
+
+      
+      
+      
+      }
+    }
+    $this->view('auth/sair');
+
+
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      
+      $placa = trim($_POST['placa']);
+      
+      if (!empty($placa)) {
+        
+        $query = "SELECT * FROM registro WHERE placa = :placa";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':placa', $placa);
+        $stmt->execute();}
+
+        if ($stmt->rowCount() > 0) {
+          
+          $sair = date('Y-m-d H:i:s');
+          $updateQuery = "UPDATE registro SET sair = :sair WHERE placa = :placa";
+          $updateStmt = $pdo->prepare($updateQuery);
+          $updateStmt->bindParam(':sair', $sair);
+         
+        }
+        if($stm->execute()) {
+          $this->redirect('/');
+        }
+
+
+
+    
+    }
+
+$this->view('/auth/sair');
+    $placa = $_POST['placa']; 
+    $sair =  date('Y-m-d H:i:s');
+    $db = Database::connect();
+    $stm = $db->prepare ("UPDATE registro SET sair = :sair WHERE placa = :placa");
+    $stm->bindParam(":placa", $placa);
+    $stm->bindParam(":sair", $sair);
+    if($stm->execute()) {
+      $this->redirect('/sair');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+
+      $db = Database::connect();
+      $stm = $db->prepare("SELECT * FROM users WHERE username = :username");
+
+      $stm->bindParam(":username", $username);
+      $stm->execute();
+
+      $user = $stm->fetch();
+      session_start();
+
+      if($user && password_verify($password, $user['password'])){
+
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['name'] = $user['name'];
+        $_SESSION['username'] = $user['username'];
+
+        $this->redirect('/dash');
+
+      }
+    }
+    $this->view('auth/sair');
